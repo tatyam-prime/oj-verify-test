@@ -1,0 +1,29 @@
+name: Verify library
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+        cache: 'pip'
+
+    - run: pip install -r .github/workflows/requirements.txt
+
+    - run: oj-verify all
+      env:
+        # Set the repository's Settings → Actions → Workflow permissions to "Read & Write".
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_PAT: this_token_is_never_used_but_oj_verify_requires_this

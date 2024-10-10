@@ -11,6 +11,6 @@
 ## 手元環境
 
 1. `brew install pipx` / `sudo apt install pipx`
-2. `pipx install online-judge-verify-helper`
+2. `pipx install online-judge-verify-helper online-judge-tools`
 3. `oj-verify run` でライブラリをチェック
 4. `oj-bundle -I /path/to/your/library main.cpp` でライブラリを展開
